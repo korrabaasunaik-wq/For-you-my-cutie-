@@ -1,0 +1,362 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>❤️ A Special Question ❤️</title>
+
+
+<style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Segoe UI',sans-serif;
+
+
+    background:linear-gradient(
+        -45deg,
+        #ff4e8a,
+        #ff7eb3,
+        #ffb6c1,
+        #ffc3a0,
+        #ff6ec7,
+        #ffd700
+    );
+
+
+    background-size:400% 400%;
+    animation:bgMove 10s ease infinite;
+}
+
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+
+.container{
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    width:90%;
+    max-width:550px;
+    box-shadow:0 0 30px rgba(255,255,255,.4);
+    z-index:2;
+}
+
+
+h1{
+    color:white;
+    font-size:2.5rem;
+    margin-bottom:20px;
+    text-shadow:0 0 15px white;
+}
+
+
+p{
+    color:white;
+    font-size:1.2rem;
+    margin-bottom:25px;
+}
+
+
+.stickers{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+
+button{
+    border:none;
+    padding:15px 35px;
+    border-radius:40px;
+    cursor:pointer;
+    font-size:20px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+
+#yesBtn{
+    background:linear-gradient(45deg,#00c853,#69f0ae);
+    color:white;
+    margin-right:15px;
+    box-shadow:0 0 20px rgba(0,255,100,.8);
+}
+
+
+#yesBtn:hover{
+    transform:scale(1.1);
+}
+
+
+#noBtn{
+    position:fixed;
+    background:linear-gradient(45deg,#ff1744,#ff8a80);
+    color:white;
+    z-index:999;
+    left:58%;
+    top:60%;
+}
+
+
+.result{
+    display:none;
+    text-align:center;
+}
+
+
+.result img{
+    width:300px;
+    border-radius:20px;
+    margin-top:20px;
+}
+
+
+.result h2{
+    color:white;
+    margin-top:20px;
+    font-size:2rem;
+}
+
+
+.result p{
+    font-size:1.3rem;
+}
+
+
+.heart{
+    position:absolute;
+    font-size:30px;
+    animation:float linear infinite;
+}
+
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+
+
+    to{
+        transform:translateY(-120px);
+        opacity:0;
+    }
+}
+
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="container" id="mainCard">
+
+
+<div class="stickers">
+❤️ 💖 🥰 💕 💘
+</div>
+
+
+<h1>hey cutiee Will You Be My Girl?</h1>
+
+
+<p>
+You make every day brighter, every smile sweeter,
+and every moment special. ❤️
+</p>
+
+
+<button id="yesBtn">YES 💖</button>
+
+
+</div>
+
+
+<button id="noBtn">NO 😅</button>
+
+
+<div class="result" id="result">
+
+
+<h2>💖 SHE SAID YES 💖</h2>
+
+
+<div style="font-size:50px;">
+💞🫶
+</div>
+
+
+<img src="https://media.giphy.com/media/lTQF0ODLLjhza/giphy.gif">
+
+
+<p>
+You just made my day  ❤️🥰
+</p>
+
+
+</div>
+
+
+<script>
+
+
+// Floating Hearts
+
+
+const emojis = ["❤️","💖","💕","💘","🥰","✨"];
+
+
+function createHeart(){
+
+
+    const heart = document.createElement("div");
+
+
+    heart.classList.add("heart");
+
+
+    heart.innerHTML =
+    emojis[Math.floor(Math.random()*emojis.length)];
+
+
+    heart.style.left =
+    Math.random()*100 + "vw";
+
+
+    heart.style.animationDuration =
+    (4 + Math.random()*5) + "s";
+
+
+    heart.style.fontSize =
+    (20 + Math.random()*30) + "px";
+
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(()=>{
+        heart.remove();
+    },9000);
+}
+
+
+setInterval(createHeart,300);
+
+
+
+
+// NO Button Escape
+
+
+const noBtn = document.getElementById("noBtn");
+
+
+function moveButton(){
+
+
+    const maxX =
+    window.innerWidth - noBtn.offsetWidth - 20;
+
+
+    const maxY =
+    window.innerHeight - noBtn.offsetHeight - 20;
+
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+
+noBtn.addEventListener("mouseenter",moveButton);
+noBtn.addEventListener("click",moveButton);
+
+
+
+
+// YES Button
+
+
+document
+.getElementById("yesBtn")
+.addEventListener("click",()=>{
+
+
+document.getElementById("mainCard").style.display="none";
+document.getElementById("noBtn").style.display="none";
+
+
+document.getElementById("result").style.display="block";
+
+
+for(let i=0;i<80;i++){
+
+
+setTimeout(()=>{
+
+
+let heart=document.createElement("div");
+
+
+heart.classList.add("heart");
+
+
+heart.innerHTML="💖";
+
+
+heart.style.left=Math.random()*100+"vw";
+
+
+heart.style.animationDuration="3s";
+
+
+document.body.appendChild(heart);
+
+
+setTimeout(()=>{
+heart.remove();
+},3000);
+
+
+},i*50);
+
+
+}
+
+
+});
+
+
+</script>
+
+
+</body>
+</html>
+```
+
